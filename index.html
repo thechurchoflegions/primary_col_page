@@ -8,39 +8,30 @@
   <link rel="icon" href="assets/img/CoL_Logo.png" />
   <style>
     :root{
-      --bg: 
-#0e0f12;
-      --card: 
-#151821;
-      --ink: 
-#e9edf3;
-      --muted: 
-#a8b0bd;
-      --accent: 
-#4fd1c5;
-      --accent-2: 
-#7aa2ff;
-      --focus: 
-#9be7ff;
+      --bg: #0e0f12;
+      --card: #151821;
+      --ink: #e9edf3;
+      --muted: #a8b0bd;
+      --accent: #4fd1c5;
+      --accent-2: #7aa2ff;
+      --focus: #9be7ff;
       --shadow: 0 10px 30px rgba(0,0,0,.35);
       --radius: 16px;
       --maxw: 1100px;
     }
-    {box-sizing:border-box}
+    *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background: radial-gradient(1200px 800px at 50% -20%, 
-#1a2030 0, 
-#0e0f12 50%);
+      background: radial-gradient(1200px 800px at 50% -20%, #1a2030 0, #0e0f12 50%);
       color: var(--ink);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
     a{color:inherit;text-decoration:none}
     .wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:20px}
-    / Header /
+    /* Header */
     header{
       position:sticky;top:0;z-index:50;
       backdrop-filter: blur(10px);
@@ -60,10 +51,9 @@
     .cart{
       display:inline-flex;align-items:center;justify-content:center;
       width:36px;height:36px;border-radius:10px;
-      background:
-#10131a;border:1px solid rgba(255,255,255,.06)
+      background:#10131a;border:1px solid rgba(255,255,255,.06)
     }
-    / Hero / Wheel /
+    /* Hero / Wheel */
     .hero{padding:32px 0 20px}
     .tagline{color:var(--muted);font-size:14px;letter-spacing:.4px;text-transform:uppercase}
     h1{margin:.25rem 0 0;font-size:2.1rem;line-height:1.2}
@@ -74,17 +64,14 @@
     .arrow{
       display:inline-flex;align-items:center;justify-content:center;
       height:56px;width:56px;border-radius:14px;border:1px solid rgba(255,255,255,.08);
-      background:
-#10131a;cursor:pointer;user-select:none;
+      background:#10131a;cursor:pointer;user-select:none;
       transition: transform .12s ease, border-color .12s ease;
     }
     .arrow:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.2)}
     .arrow:active{transform: translateY(0)}
     .card{
       display:grid;grid-template-columns: 1fr;gap:18px;
-      background:linear-gradient(180deg, 
-#171b24 0%, 
-#12151d 100%);
+      background:linear-gradient(180deg, #171b24 0%, #12151d 100%);
       border:1px solid rgba(255,255,255,.08);
       border-radius:var(--radius); box-shadow: var(--shadow);
       padding:16px;
@@ -94,9 +81,7 @@
     }
     .art{
       display:grid;place-items:center;
-      background: radial-gradient(120px 120px at 50% 55%, 
-#1e2433, 
-#0f1219 70%);
+      background: radial-gradient(120px 120px at 50% 55%, #1e2433, #0f1219 70%);
       border-radius:12px;border:1px solid rgba(255,255,255,.06);padding:12px;
       min-height: 320px;
     }
@@ -105,24 +90,22 @@
       display:inline-flex;gap:8px;align-items:center;
       padding:6px 10px;border-radius:999px;
       background: rgba(79,209,197,.12);
-      color:
-#b7fff6;border:1px solid rgba(79,209,197,.4);
+      color:#b7fff6;border:1px solid rgba(79,209,197,.4);
       font-size:12px;letter-spacing:.3px;text-transform:uppercase
     }
     .meta h2{margin:.6rem 0 .25rem;font-size:1.6rem}
     .meta .trad{color:var(--muted);font-size:.95rem;margin-bottom:.5rem}
-    .blurb{color:
-#d7dde7;line-height:1.55}
-    / Footer /
+    .blurb{color:#d7dde7;line-height:1.55}
+    /* Footer */
     footer{margin:36px 0 60px;color:var(--muted);font-size:.95rem}
     footer a{color:var(--ink);text-decoration:underline dotted rgba(255,255,255,.35)}
-    / Responsive /
+    /* Responsive */
     @media (max-width: 900px){
       .card-inner{grid-template-columns: 1fr}
       .art{min-height:260px}
       .menu{display:none}
     }
-    / Focus */
+    /* Focus */
     .arrow:focus-visible, a:focus-visible, button:focus-visible{
       outline:2px solid var(--focus);outline-offset:2px;border-color:var(--focus)
     }
@@ -144,7 +127,6 @@
         <a href="/donate.html">Donate</a>
         <a href="/contact.html">Contact</a>
         <a class="cart" href="/shop.html" aria-label="Shopping Cart">
-          <!-- simple cart icon -->
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M6 6h15l-2 9H8L6 2H2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
             <circle cx="9" cy="21" r="1.5" fill="currentColor"/><circle cx="18" cy="21" r="1.5" fill="currentColor"/>
@@ -189,9 +171,6 @@
     </footer>
   </main>
   <script>
-    // --- Content data (image path, titles, doctrines, 2–3 sentence blurbs) ---
-    // Put your PNGs with transparent backgrounds in /assets/img/deities/
-    // and make sure the filenames match below.
     const DEITIES = [
       {
         name: "Flora",
@@ -282,36 +261,39 @@
           "We honor the Annunaki as ancient powers of the heavens and earth, bearers of wisdom, beauty, and cosmic law. Through their legacy we see order in the stars and passion in the human heart, learning to walk with dignity, creativity, and balance. In their stories, we find guidance for living in harmony with the mysteries that shape existence."
       }
     ];
-    // --- Wheel logic ---
+
     const imgEl = document.getElementById('deityImg');
     const nameEl = document.getElementById('deityName');
     const tradEl = document.getElementById('deityTrad');
     const sourceEl = document.getElementById('deitySource');
     const blurbEl = document.getElementById('deityBlurb');
     let index = 0;
+
     function render(i){
       const d = DEITIES[i];
       if(!d) return;
       imgEl.src = d.img;
-      imgEl.alt = ${d.name} — ${d.tradition};
+      imgEl.alt = `${d.name} — ${d.tradition}`;
       nameEl.textContent = d.name;
       tradEl.textContent = d.tradition;
       sourceEl.textContent = d.source;
       blurbEl.textContent = d.blurb;
-      // Prefetch neighbors for snappy UX
+
       const next = new Image(); next.src = DEITIES[(i+1)%DEITIES.length].img;
       const prev = new Image(); prev.src = DEITIES[(i-1+DEITIES.length)%DEITIES.length].img;
     }
+
     function next(){ index = (index + 1) % DEITIES.length; render(index); }
     function prev(){ index = (index - 1 + DEITIES.length) % DEITIES.length; render(index); }
+
     document.getElementById('nextBtn').addEventListener('click', next);
     document.getElementById('prevBtn').addEventListener('click', prev);
-    // Keyboard support
+
     window.addEventListener('keydown', (e)=>{
       if(e.key === 'ArrowRight'){ next(); }
       if(e.key === 'ArrowLeft'){ prev(); }
     });
-    // Basic swipe support
+
     let sx = 0, sy = 0;
     const area = document.querySelector('.card');
     area.addEventListener('touchstart', (e)=>{ sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, {passive:true});
@@ -322,7 +304,7 @@
         dx < 0 ? next() : prev();
       }
     }, {passive:true});
-    // Initialize
+
     render(index);
   </script>
 </body>
