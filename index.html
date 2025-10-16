@@ -56,10 +56,28 @@
       width:36px;height:36px;border-radius:10px;
       background:#10131a;border:1px solid rgba(255,255,255,.06)
     }
-    /* Hero / Wheel */
-    .hero{padding:32px 0 20px}
-    .tagline{color:var(--muted);font-size:14px;letter-spacing:.4px;text-transform:uppercase}
-    h1{margin:.25rem 0 0;font-size:2.1rem;line-height:1.2}
+    /* Intro */
+    .intro{
+      max-width: 800px;
+      margin: 40px auto 48px;
+      padding: 32px 24px;
+      line-height: 1.7;
+      color: #d7dde7;
+      text-align: center;
+      background: rgba(14,15,18,.7);
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.06);
+    }
+    .intro p{
+      margin: 0 0 16px 0;
+    }
+    .intro p:last-child{
+      margin-bottom: 0;
+    }    
+    /* deity / Wheel */
+    .deity{padding:32px 0 20px}
+    .tagline{color:var(--muted);font-size:14px;letter-spacing:.4px;text-transform:uppercase;text-align:center}
+    h1{margin:.25rem 0 0;font-size:2.1rem;line-height:1.2;text-align:center}
     .wheel{
       margin:24px 0 16px;
       display:grid;grid-template-columns: 56px 1fr 56px;gap:16px;align-items:center;
@@ -139,7 +157,12 @@
     </div>
   </header>
   <main class="wrap">
-    <section class="hero" aria-label="Deity Wheel">
+    <!-- ADD INTRO HERE AT THE TOP -->
+  <section class="intro">
+    <p>At The Church of Legions, we believe every passion is sacred. Whether through art, music, scholarship, craft, or play, the pursuit of hobbies is more than pastime — it is worship.</p>
+    <p>Our community honors all faiths and traditions, while rejecting exclusion. By embracing creativity, curiosity, and compassion, we guide one another toward deeper fulfillment. Every path of passion is a path to the divine, and together, many paths form one community.</p>
+  </section>
+  <section class="deity" aria-label="Deity Wheel">
       <div class="tagline">Many paths, one community</div>
       <h1>Choose your path. Meet the Legions.</h1>
       <div class="wheel">
