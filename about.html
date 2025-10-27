@@ -167,7 +167,8 @@
       <a class="brand" href="/" aria-label="Church of Legions—Home">
         <img src="assets/img/CoL Logo.png" alt="Church of Legions logo" />        
       </a>
-      <nav class="menu" aria-label="Site">
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+      <nav class="menu" id="menu" aria-label="Site">
         <a href="/">Home</a>
         <a href="/about.html">About</a>
         <a href="/doctrines.html">Doctrines</a>
@@ -238,8 +239,20 @@
       </p>
     </footer>
   </main>
+<script>
+  // Mobile menu toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const menu = document.getElementById('menu');
+  if (menuToggle && menu) {
+    menuToggle.addEventListener('click', () => {
+      menu.classList.toggle('active');
+    });
+  }
+</script>
+  
 </body>
 
 </html>
+
 
 
