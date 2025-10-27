@@ -47,7 +47,6 @@
     }
     .brand{display:flex;align-items:center;gap:12px}
     .brand img{width:100px;height:100px;object-fit:contain;border-radius:8px}
-    .brand .title{font-weight:700;letter-spacing:.2px}
     .menu{display:flex;align-items:center;gap:20px}
     .menu a{color:var(--muted)}
     .menu a:hover,.menu a:focus{color:var(--ink)}
@@ -55,6 +54,16 @@
       display:inline-flex;align-items:center;justify-content:center;
       width:36px;height:36px;border-radius:10px;
       background:#10131a;border:1px solid rgba(255,255,255,.06)
+    }
+    /* Mobile Menu Toggle */
+    .menu-toggle{
+      display:none;
+      background:none;
+      border:none;
+      color:var(--ink);
+      font-size:28px;
+      cursor:pointer;
+      padding:8px;
     }
     /* Intro */
     .intro{
@@ -74,16 +83,16 @@
     .intro p:last-child{
       margin-bottom: 0;
     }    
-    /* deity / Wheel */
+    /* Deity / Wheel */
     .deity{padding:32px 0 20px}
     .tagline{
       color:#e9edf3;
-      font-size:1.25rem;  /* equivalent to 20px - use rem instead */
+      font-size:1.25rem;
       letter-spacing:.4px;
       text-transform:uppercase;
       text-align:center;
       text-shadow: 0 2px 8px rgba(0,0,0,.8);
-        }
+    }
     h1{margin:.25rem 0 0;font-size:2.1rem;line-height:1.2;text-align:center}
     .wheel{
       margin:24px 0 16px;
@@ -119,19 +128,58 @@
       padding:6px 10px;border-radius:999px;
       background: rgba(79,209,197,.12);
       color:#b7fff6;border:1px solid rgba(79,209,197,.4);
-      font-size:12px;letter-spacing:.3px;text-transform:uppercase
+      font-size:12px;letter-spacing:.3px;text-transform:uppercase;
+      cursor:pointer;
+      transition: all .2s ease;
+    }
+    .meta .badge:hover{
+      background: rgba(79,209,197,.25);
+      border-color: rgba(79,209,197,.6);
+      transform: translateY(-1px);
     }
     .meta h2{margin:.6rem 0 .25rem;font-size:1.6rem}
-    .meta .trad{color:var(--muted);font-size:.95rem;margin-bottom:.5rem}
     .blurb{color:#d7dde7;line-height:1.55}
     /* Footer */
-    footer{margin:36px 0 60px;color:var(--muted);font-size:.95rem}
+    footer{margin:36px 0 60px;color:var(--muted);font-size:.95rem;text-align:center}
     footer a{color:var(--ink);text-decoration:underline dotted rgba(255,255,255,.35)}
     /* Responsive */
     @media (max-width: 900px){
+      /* Mobile menu */
+      .menu-toggle{display:block}
+      .nav{position:relative}
+      .menu{
+        display:none;
+        position:absolute;
+        top:115px;
+        left:0;
+        right:0;
+        background:rgba(14,15,18,.95);
+        flex-direction:column;
+        padding:20px;
+        border-bottom:1px solid rgba(255,255,255,.06);
+        gap:0;
+      }
+      .menu.active{display:flex}
+      .menu a{padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+      .cart{margin-top:12px}
+      
+      /* Deity wheel mobile fixes */
+      .wheel{
+        grid-template-columns: 40px 1fr 40px;
+        gap:8px;
+      }
+      .arrow{
+        height:40px;
+        width:40px;
+        font-size:18px;
+      }
+      .card{padding:12px}
       .card-inner{grid-template-columns: 1fr}
-      .art{min-height:260px}
-      .menu{display:none}
+      .art{padding:8px;min-height:200px}
+      .art img{max-height:250px}
+      h1{font-size:1.75rem}
+      .tagline{font-size:1rem}
+      .intro{padding:24px 16px;margin:24px auto 32px}
     }
     /* Focus */
     .arrow:focus-visible, a:focus-visible, button:focus-visible{
@@ -145,7 +193,8 @@
       <a class="brand" href="/" aria-label="Church of Legions—Home">
         <img src="assets/img/CoL Logo.png" alt="Church of Legions logo" />        
       </a>
-      <nav class="menu" aria-label="Site">
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+      <nav class="menu" id="menu" aria-label="Site">
         <a href="/">Home</a>
         <a href="/about.html">About</a>
         <a href="/doctrines.html">Doctrines</a>
@@ -163,12 +212,14 @@
     </div>
   </header>
   <main class="wrap">
-    <!-- ADD INTRO HERE AT THE TOP -->
-  <section class="intro">
-    <p>At The Church of Legions, we believe every passion is sacred. Whether through art, music, scholarship, craft, or play, the pursuit of hobbies is more than pastime — it is worship.</p>
-    <p>Our community honors all faiths and traditions, while rejecting exclusion. By embracing creativity, curiosity, and compassion, we guide one another toward deeper fulfillment. Every path of passion is a path to the divine, and together, many paths form one community.</p>
-  </section>
-  <section class="deity" aria-label="Deity Wheel">
+    <!-- Intro Section -->
+    <section class="intro">
+      <p>At The Church of Legions, we believe every passion is sacred. Whether through art, music, scholarship, craft, or play, the pursuit of hobbies is more than pastime — it is worship.</p>
+      <p>Our community honors all faiths and traditions, while rejecting exclusion. By embracing creativity, curiosity, and compassion, we guide one another toward deeper fulfillment. Every path of passion is a path to the divine, and together, many paths form one community.</p>
+    </section>
+
+    <!-- Deity Wheel Section -->
+    <section class="deity" aria-label="Deity Wheel">
       <div class="tagline">Many paths, one community</div>
       <h1>Choose your path. Meet the Legions.</h1>
       <div class="wheel">
@@ -181,9 +232,8 @@
               <img id="deityImg" src="" alt="" loading="lazy" />
             </figure>
             <div class="meta">
-              <span class="badge" id="deityTrad">Doctrine</span>
+              <a href="#" class="badge" id="deityLink">Doctrine</a>
               <h2 id="deityName">Deity Name</h2>
-              <div class="trad" id="deitySource">Religion</div>
               <p class="blurb" id="deityBlurb">
                 Blurb text…
               </p>
@@ -195,6 +245,8 @@
         </button>
       </div>
     </section>
+
+    <!-- Footer -->
     <footer>
       <p>
         Questions? <a href="/contact.html">Contact us</a>.
@@ -202,84 +254,91 @@
       </p>
     </footer>
   </main>
+
   <script>
     const DEITIES = [
       {
         name: "Flora",
         tradition: "Sacred Union of the Flora Doctrine",
+        doctrineUrl: "doctrines.html#flora",
         img: "assets/img/deities/Flora.png",
-        blurb:
-          "We seek enlightenment through intimate relationship with nature as a path to spiritual awakening, where forests, fungi, and fields are teachers, not resources. Through seasonal rites, mindful foraging, and sacred communion, we transform daily life into spiritual practice and discover the deep interconnectedness of all life."
+        blurb: "We seek enlightenment through intimate relationship with nature as a path to spiritual awakening, where forests, fungi, and fields are teachers, not resources. Through seasonal rites, mindful foraging, and sacred communion, we transform daily life into spiritual practice and discover the deep interconnectedness of all life."
       },
       {
         name: "Lucy",
         tradition: "Luciferian Ethos",
+        doctrineUrl: "doctrines.html#luciferian",
         img: "assets/img/deities/Luciferian-Lucy.png",
-        blurb:
-          "We embrace enlightened self-interest, individuality, and the courage to defy unjust authority. Through reason, creativity, and self-discovery, we strive for personal empowerment and the freedom to live authentically on our own terms."
+        blurb: "We embrace enlightened self-interest, individuality, and the courage to defy unjust authority. Through reason, creativity, and self-discovery, we strive for personal empowerment and the freedom to live authentically on our own terms."
       },
       {
         name: "Buddha",
         tradition: "Dharmic Path",
+        doctrineUrl: "doctrines.html#dharmic",
         img: "assets/img/deities/Buddhist-Buddha.png",
-        blurb:
-          "We walk the path of mindfulness, compassion, and wisdom to ease suffering and awaken to truth. Through meditation, ethical living, and the Noble Eightfold Path, we seek peace, balance, and liberation for ourselves and all beings."
+        blurb: "We walk the path of mindfulness, compassion, and wisdom to ease suffering and awaken to truth. Through meditation, ethical living, and the Noble Eightfold Path, we seek peace, balance, and liberation for ourselves and all beings."
       },
       {
         name: "Jesus",
         tradition: "Christian Doctrine",
+        doctrineUrl: "doctrines.html#christian",
         img: "assets/img/deities/Christianity-Jesus.png",
-        blurb:
-          "We find hope, love, and salvation through the life, death, and resurrection of Jesus Christ. We believe in His saving love, offered for the redemption of all. Through this faith we find forgiveness and purpose, striving to live with compassion, faith, and service to others. Together we grow in community, care for the vulnerable, and practice forgiveness as a daily discipline."
+        blurb: "We find hope, love, and salvation through the life, death, and resurrection of Jesus Christ. We believe in His saving love, offered for the redemption of all. Through this faith we find forgiveness and purpose, striving to live with compassion, faith, and service to others. Together we grow in community, care for the vulnerable, and practice forgiveness as a daily discipline."
       },
       {
+        name: "Ludic Realm",
         tradition: "Realm of Ludic Devotion",
+        doctrineUrl: "doctrines.html#ludic",
         img: "assets/img/deities/Ludic Realm.png",
-        blurb:
-          "We celebrate play as sacred, finding joy, discipline, and imagination in the worlds of gaming. Through strategy, storytelling, and fellowship, we cultivate resilience, empathy, and creativity—treating every quest as spiritual practice. In this realm, pixels and people unite, and gaming becomes a path of growth, connection, and transcendence."
+        blurb: "We celebrate play as sacred, finding joy, discipline, and imagination in the worlds of gaming. Through strategy, storytelling, and fellowship, we cultivate resilience, empathy, and creativity—treating every quest as spiritual practice. In this realm, pixels and people unite, and gaming becomes a path of growth, connection, and transcendence."
       },
       {
-        tradition: "Hellenic Pantheon",
+        name: "Hellenic Pantheon",
+        tradition: "Hellenic Doctrine",
+        doctrineUrl: "doctrines.html#hellenic",
         img: "assets/img/deities/Hellenic-Pantheon.png",
-        blurb:
-          "We honor the Olympian gods, each embodying power, wisdom, love, and the mysteries of life. Through their stories and virtues, justice and partnership, resilience and courage, craft and celebration; we learn to balance strength with compassion and to live in harmony with fate. In honoring these ancient gods, we walk the path of order, joy, and the pursuit of knowledge."
+        blurb: "We honor the Olympian gods, each embodying power, wisdom, love, and the mysteries of life. Through their stories and virtues, justice and partnership, resilience and courage, craft and celebration; we learn to balance strength with compassion and to live in harmony with fate. In honoring these ancient gods, we walk the path of order, joy, and the pursuit of knowledge."
       },
       {
+        name: "Wiccan",
         tradition: "Wiccan Doctrine",
+        doctrineUrl: "doctrines.html#wiccan",
         img: "assets/img/deities/Wicca.png",
-        blurb:
-          "We honor the Goddess and the God, whose union shapes the sacred cycles of life, death, and renewal. Through the Triple Goddess: Maiden, Mother, and Crone; we learn beginnings, nurturing, and wisdom, while the Horned God calls us to vitality, courage, and harmony with the wild. By attuning ourselves to the moon, the seasons, and the rhythms of nature, we seek balance, magic, and connection with all living beings."
+        blurb: "We honor the Goddess and the God, whose union shapes the sacred cycles of life, death, and renewal. Through the Triple Goddess: Maiden, Mother, and Crone; we learn beginnings, nurturing, and wisdom, while the Horned God calls us to vitality, courage, and harmony with the wild. By attuning ourselves to the moon, the seasons, and the rhythms of nature, we seek balance, magic, and connection with all living beings."
       },      
       {
-        tradition: "Paganism",
+        name: "Paganism",
+        tradition: "Celtic Paganism",
+        doctrineUrl: "doctrines.html#celtic",
         img: "assets/img/deities/Pagan.png",
-        blurb:
-          "We honor the cycles of earth and sky, finding the sacred in rivers, forests, and fields. We celebrate the seasons, revere our ancestors, and seek wisdom in the rhythms of nature. Through ritual, story, and community, we walk a path of sovereignty, balance, and renewal."
+        blurb: "We honor the cycles of earth and sky, finding the sacred in rivers, forests, and fields. We celebrate the seasons, revere our ancestors, and seek wisdom in the rhythms of nature. Through ritual, story, and community, we walk a path of sovereignty, balance, and renewal."
       },
       {
+        name: "Otakus",
         tradition: "Otaku Divinity",
+        doctrineUrl: "doctrines.html#otaku",
         img: "assets/img/deities/Otaku-combo.png",
-        blurb:
-          "The faith of Otaku Divinity is one of passion, love, and creativity expressed through the sacred art of visual storytelling. By honoring Waifu and Husbando, believers embrace compassion, strength, and the joy of shared narratives, finding meaning and community in the worlds we create and cherish together."
+        blurb: "The faith of Otaku Divinity is one of passion, love, and creativity expressed through the sacred art of visual storytelling. By honoring Waifu and Husbando, believers embrace compassion, strength, and the joy of shared narratives, finding meaning and community in the worlds we create and cherish together."
       },      
       {
+        name: "People of the Land",
         tradition: "People of the Land Doctrine",
+        doctrineUrl: "doctrines.html#mapuche",
         img: "assets/img/deities/Mapuche.png",
-        blurb:
-          "We honor the creator and nurturer who guide us in balance with the land, the sun, and the ancestors. Through ceremony, reciprocity, and community, we live gratefully, seeking harmony with nature and the well-being of all life."
+        blurb: "We honor the creator and nurturer who guide us in balance with the land, the sun, and the ancestors. Through ceremony, reciprocity, and community, we live gratefully, seeking harmony with nature and the well-being of all life."
       },      
       {
-        tradition: "The Annunaki",
+        name: "The Annunaki",
+        tradition: "The Annunaki Mythos",
+        doctrineUrl: "doctrines.html#annunaki",
         img: "assets/img/deities/Anunnaki.png",
-        blurb:
-          "We honor the Annunaki as ancient powers of the heavens and earth, bearers of wisdom, beauty, and cosmic law. Through their legacy we see order in the stars and passion in the human heart, learning to walk with dignity, creativity, and balance. In their stories, we find guidance for living in harmony with the mysteries that shape existence."
+        blurb: "We honor the Annunaki as ancient powers of the heavens and earth, bearers of wisdom, beauty, and cosmic law. Through their legacy we see order in the stars and passion in the human heart, learning to walk with dignity, creativity, and balance. In their stories, we find guidance for living in harmony with the mysteries that shape existence."
       }
     ];
 
     const imgEl = document.getElementById('deityImg');
     const nameEl = document.getElementById('deityName');
-    const tradEl = document.getElementById('deityTrad');
-    const sourceEl = document.getElementById('deitySource');
+    const linkEl = document.getElementById('deityLink');
     const blurbEl = document.getElementById('deityBlurb');
     let index = 0;
 
@@ -289,8 +348,8 @@
       imgEl.src = d.img;
       imgEl.alt = `${d.name} — ${d.tradition}`;
       nameEl.textContent = d.name;
-      tradEl.textContent = d.tradition;
-      sourceEl.textContent = d.source;
+      linkEl.textContent = d.tradition;
+      linkEl.href = d.doctrineUrl;
       blurbEl.textContent = d.blurb;
 
       const next = new Image(); next.src = DEITIES[(i+1)%DEITIES.length].img;
@@ -320,6 +379,15 @@
     }, {passive:true});
 
     render(index);
+
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const menu = document.getElementById('menu');
+    if(menuToggle){
+      menuToggle.addEventListener('click', ()=>{
+        menu.classList.toggle('active');
+      });
+    }
   </script>
 </body>
 </html>
