@@ -48,7 +48,7 @@
     }
     .brand{display:flex;align-items:center;gap:12px}
     .brand img{width:100px;height:100px;object-fit:contain;border-radius:8px}
-    .brand .title{font-weight:700;letter-spacing:.2px}
+    .brand .title{font-weight:700;letter-spacing:.2px} /*What's this line do? */
     .menu{display:flex;align-items:center;gap:20px}
     .menu a{color:var(--muted)}
     .menu a:hover,.menu a:focus{color:var(--ink)}
@@ -56,6 +56,16 @@
       display:inline-flex;align-items:center;justify-content:center;
       width:36px;height:36px;border-radius:10px;
       background:#10131a;border:1px solid rgba(255,255,255,.06)
+    }
+    /* Hanburger Mobile Menu Toggle */
+    .menu-toggle{
+      display:none;
+      background:none;
+      border:none;
+      color:var(--ink);
+      font-size:28px;
+      cursor:pointer;
+      padding:8px;
     }
     
     /* Page Title */
@@ -119,9 +129,28 @@
     
     /* Responsive */
     @media (max-width: 900px){
-      .menu{display:none}
+      /* Mobile menu */
+      .menu-toggle{display:block}
+      .nav{position:relative}
+      .menu{
+        display:none;
+        position:absolute;
+        top:115px;
+        left:0;
+        right:0;
+        background:rgba(14,15,18,.95);
+        flex-direction:column;
+        padding:20px;
+        border-bottom:1px solid rgba(255,255,255,.06);
+        gap:0;
+      }
+      .menu.active{display:flex}
+      .menu a{padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+      .cart{margin-top:12px}
+      
+      /* Page content */
       .page-title{font-size:2rem;padding:32px 0 24px}
-      .content-section{padding:28px 20px}
+      .content-section{padding:28px 20px;margin-bottom:32px}
       .content-section h1{font-size:1.5rem}
     }
     
@@ -142,7 +171,7 @@
         <a href="/">Home</a>
         <a href="/about.html">About</a>
         <a href="/doctrines.html">Doctrines</a>
-        <a href="/events.html">Events</a>
+        <a href="/services.html">Services</a>
         <a href="/shop.html">Shop</a>
         <a href="/donate.html">Donate</a>
         <a href="/contact.html">Contact</a>
@@ -212,4 +241,5 @@
 </body>
 
 </html>
+
 
